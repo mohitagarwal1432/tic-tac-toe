@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+    <body>
+        <div class="slider">
+            <div class="slide">
+                <form onsubmit="savePlayerName(event, 1)">
+                    <h1>Enter Player 1 name:</h1>
+                    <input
+                        type="text"
+                        id="player1"
+                        minlength="3"
+                        maxlength="10"
+                        name="player1"
+                        required
+                    />
+                    <br />
+                    <input type="submit" value="Next" />
+                </form>
+            </div>
+            <div class="slide">
+                <form onsubmit="savePlayerName(event, 2)">
+                    <h1>Enter Player 2 name:</h1>
+                    <input
+                        type="text"
+                        id="player2"
+                        minlength="3"
+                        maxlength="10"
+                        name="player2"
+                        required
+                    />
+                    <br />
+                    <input type="submit" value="Next" />
+                </form>
+            </div>
+            <div class="slide">
+                <form onsubmit="salectLevel(event)">
+                    <h1>Select Game Level:</h1>
+                    <select id="game-level" name="game-level">
+                        <option value="1">Easy</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Hard</option>
+                    </select>
+
+                    <br />
+                    <input type="submit" value="Next" />
+                </form>
+            </div>
+            <div class="slide">
+                <div class="player-name-container">
+                    <p id="player1-symbol"></p>
+                    <p id="player2-symbol"></p>
+                    <p style="clear: both"></p>
+                    <div class="button-container">
+                        <button onclick="replayGame()">Replay</button>
+                        <button onclick="restartGame()">Restart</button>
+                        <select style="width: auto;" onchange="changeLevel()" id="game-level-change" name="game-level-change">
+                            <option value="1">Easy</option>
+                            <option value="2">Medium</option>
+                            <option value="3">Hard</option>
+                        </select>
+                        </form>
+                    </div>
+                </div>
+                <p class="player-turn" id="turn"></p>
+                <div class="table-container">
+                    <table>
+                        <tbody id="table"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- <div class="slider-button-container">
+                    <a class="slider-button" href="javascript:changeSlide(-1)"
+                        >Previous
+                    </a>
+                    <a class="slider-button" href="javascript:changeSlide(1)"
+                        >Next
+                    </a>
+                </div> -->
+        </div>
+
+        <script src="./js/index.js"></script>
+    </body>
+</html>
