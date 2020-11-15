@@ -12,6 +12,7 @@ var result = []; // to store 0 and X matrix
 var TableData; //it will store all td elements
 var PlayerNames = [];
 var GameLevel;
+var ClickCount = 0;
 
 /*
 ##############################################
@@ -99,8 +100,10 @@ const setDefaultResult = () => {
 //click action function
 const playGame = (ele) => {
     ele = ele.srcElement;
+    ele.removeEventListener("click", playGame);
     var id = parseInt(ele.id);
 
+    ClickCount++;
     ele.innerHTML = GameSymbols[player];
     result[Math.floor(id / MaxRows)][id % MaxRows] = GameSymbols[player];
     var check = checkResult();
@@ -108,7 +111,6 @@ const playGame = (ele) => {
         player = player ? 0 : 1;
         document.getElementById("turn").innerHTML =
             PlayerNames[player] + "'s turn";
-        ele.removeEventListener("click", playGame);
     }
 };
 
@@ -180,6 +182,16 @@ const checkResult = () => {
         console.log("win Diagonal RTL - winner is Player" + (player + 1));
         return 1;
     }
+
+    //Checking for tie
+    if (ClickCount == MaxRows * MaxRows) {
+        RemoveClickActionListner();
+        var turn = document.getElementById("turn");
+        turn.innerHTML = "DRAW";
+        turn.style = "color:RED;font-weight:bolder";
+        return 1;
+    }
+
     return 0;
 };
 
@@ -230,6 +242,7 @@ const init = () => {
     player = 0;
     document.getElementById("turn").style = "color:black; font-weight: light";
     document.getElementById("game-level-change").value = GameLevel;
+    ClickCount = 0;
 };
 //setting onlick action
 const setClickAction = () => {
