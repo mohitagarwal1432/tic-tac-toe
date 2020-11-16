@@ -278,7 +278,7 @@ const restartGame = () => {
 };
 
 const changeLevel = () => {
-    var GameLevel = document.getElementById("game-level-change").value;
+    GameLevel = document.getElementById("game-level-change").value;
     if (GameLevel == 1) {
         MaxRows = 3;
     } else if (GameLevel == 2) {
@@ -286,6 +286,5 @@ const changeLevel = () => {
     } else if (GameLevel == 3) {
         MaxRows = 5;
     }
-    setGameTable();
     setGameTable();
 };
