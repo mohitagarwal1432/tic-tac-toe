@@ -248,12 +248,12 @@ const gameWinner = (type, Row_Col) => {
             // }px) scale(1.25)`;
             line.style.transform = `rotate(135deg) translate(${
                 width / 2 - 20 - GameLevel * 10
-            }px, -${height / 2 - (GameLevel * 10 + 40)}px) scale(1.25)`;
+            }px, -${height / 2 - (GameLevel * 10 + 33)}px) scale(1.25)`;
             break;
         case "LTR":
             line.style.transform = `rotate(45deg) translate(${
                 width / 2 - 20 - GameLevel * 10
-            }px, ${height / 2 - (GameLevel * 10 + 25)}px) scale(1.25)`;
+            }px, ${height / 2 - (GameLevel * 10 + 18)}px) scale(1.25)`;
             break;
     }
 
