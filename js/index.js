@@ -117,6 +117,8 @@ const playGame = (ele) => {
 const checkResult = () => {
     console.log(result);
     var flag = 1;
+    var i;
+    var j;
 
     //row wise check
     for (i = 0; i < MaxRows; i++) {
@@ -128,7 +130,7 @@ const checkResult = () => {
             }
         }
         if (flag) {
-            gameWinner();
+            gameWinner("ROW", i);
             RemoveClickActionListner();
             console.log("win Row - winner is Player" + (player + 1));
             return 1;
@@ -146,7 +148,7 @@ const checkResult = () => {
         }
         if (flag) {
             RemoveClickActionListner();
-            gameWinner();
+            gameWinner("COL", i);
             console.log("win Column - winner is Player" + (player + 1));
             return 1;
         }
@@ -162,7 +164,7 @@ const checkResult = () => {
     }
     if (flag) {
         RemoveClickActionListner();
-        gameWinner();
+        gameWinner("LTR");
         console.log("win Diagonal LTR - winner is Player" + (player + 1));
         return 1;
     }
@@ -178,7 +180,7 @@ const checkResult = () => {
     }
     if (flag) {
         RemoveClickActionListner();
-        gameWinner();
+        gameWinner("RTL");
         console.log("win Diagonal RTL - winner is Player" + (player + 1));
         return 1;
     }
@@ -195,7 +197,66 @@ const checkResult = () => {
     return 0;
 };
 
-const gameWinner = () => {
+const gameWinner = (type, Row_Col) => {
+    var line = document.getElementById("hr-line");
+
+    // var height = document.getElementById("table-container").offsetHeight;
+    // var width = document.getElementById("table-container").offsetWidth;
+
+    var height = document.getElementById("table-container").scrollHeight;
+    var width = document.getElementById("table-container").scrollWidth;
+    line.style.width = width - 0 + "px";
+    line.style.display = "block";
+    console.log(height, width);
+
+    var shift = 0;
+    var MidRow = (MaxRows - 1) / 2;
+    var WidthOfOneRow = width / MaxRows;
+    var HeightOfOneRow = height / MaxRows;
+
+    switch (type) {
+        case "COL":
+            if (Row_Col < MidRow) {
+                var lag = MidRow - Row_Col;
+                shift = lag * WidthOfOneRow - 5;
+            }
+            if (Row_Col > MidRow) {
+                var excess = Row_Col - MidRow;
+                shift = -1 * excess * WidthOfOneRow + 5;
+            }
+            line.style.transform = `rotate(90deg) translate(53%, ${
+                shift + 10
+            }px) `;
+            break;
+        case "ROW":
+            if (Row_Col < MidRow) {
+                var lag = MidRow - Row_Col;
+                shift = lag * HeightOfOneRow - 10;
+            }
+            if (Row_Col > MidRow) {
+                var excess = Row_Col - MidRow;
+                shift = -1 * excess * HeightOfOneRow;
+            }
+            line.style.transform = `rotate(0deg) translate(0px, ${
+                height / 2 + 0 - shift
+            }px)`;
+            break;
+        case "RTL":
+            console.log(GameLevel);
+            // line.style.transform = `rotate(135deg) translate(40%, -${
+            //     height / 2 - (GameLevel * 10 + 10)
+            // }px) scale(1.25)`;
+            line.style.transform = `rotate(135deg) translate(${
+                width / 2 - 20 - GameLevel * 10
+            }px, -${height / 2 - (GameLevel * 10 + 40)}px) scale(1.25)`;
+            break;
+        case "LTR":
+            line.style.transform = `rotate(45deg) translate(${
+                width / 2 - 20 - GameLevel * 10
+            }px, ${height / 2 - (GameLevel * 10 + 25)}px) scale(1.25)`;
+            break;
+    }
+
     var turn = document.getElementById("turn");
     turn.innerHTML = PlayerNames[player] + " won";
     turn.style = "color:green;font-weight:bolder";
@@ -242,6 +303,7 @@ const init = () => {
     player = 0;
     document.getElementById("turn").style = "color:black; font-weight: light";
     document.getElementById("game-level-change").value = GameLevel;
+    document.getElementById("hr-line").style.display = "none";
     ClickCount = 0;
 };
 //setting onlick action
