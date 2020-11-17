@@ -22,6 +22,9 @@ body {
     justify-content: center;
     align-items: center;
 }
+.slide:nth-child(4) {
+    justify-content: flex-start;
+}
 .slide * {
     text-align: center;
     margin: 10px;
@@ -97,6 +100,7 @@ button {
     width: calc(100% - 20px);
     font-size: 20px;
     padding: 10px;
+    margin: 0;
     word-wrap: break-word;
 }
 .button-container {
@@ -119,8 +123,43 @@ button {
 }
 
 #hr-line {
+    transition: 0.3s;
+    width: 0px;
     height: 5px;
     background-color: rgba(255, 0, 0, 0.5);
     border: none;
     outline: none;
+}
+
+@media screen and (max-width: 600px) {
+    input[type="submit"],
+    button {
+        padding: 7px 15px;
+        font-size: 16px;
+        background-color: black;
+        color: white;
+    }
+    input[type="text"],
+    select {
+        outline: none;
+        border: none;
+        width: 80%;
+        padding: 5px 12px;
+        font-size: 20px;
+    }
+    .player-name-container {
+        background-color: palegoldenrod;
+        text-transform: uppercase;
+        width: calc(100% - 20px);
+        font-size: 16px;
+        padding: 10px;
+        margin: 0;
+        word-wrap: break-word;
+    }
+    .button-container {
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        flex-wrap: wrap;
+    }
 }

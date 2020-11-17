@@ -304,6 +304,7 @@ const init = () => {
     document.getElementById("turn").style = "color:black; font-weight: light";
     document.getElementById("game-level-change").value = GameLevel;
     document.getElementById("hr-line").style.display = "none";
+    document.getElementById("hr-line").style.width = "0px";
     ClickCount = 0;
 };
 //setting onlick action
