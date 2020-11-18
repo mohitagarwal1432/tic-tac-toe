@@ -54,14 +54,14 @@ const savePlayerName = (event, playerID) => {
 
     var name = document.getElementById("player" + playerID).value;
     document.getElementById("player" + playerID).value = "";
-    console.log(event, playerID, name);
+    //console.log(event, playerID, name);
 
     if (name.length >= 3 && name.length <= 10) {
         PlayerNames[playerID - 1] = name;
-        console.log("ok", PlayerNames);
+        //console.log("ok", PlayerNames);
         changeSlide(1);
     } else {
-        console.log("Name can only be between 3 to 10 character.");
+        //console.log("Name can only be between 3 to 10 character.");
     }
 };
 
@@ -115,7 +115,7 @@ const playGame = (ele) => {
 };
 
 const checkResult = () => {
-    console.log(result);
+    //console.log(result);
     var flag = 1;
     var i;
     var j;
@@ -132,7 +132,7 @@ const checkResult = () => {
         if (flag) {
             gameWinner("ROW", i);
             RemoveClickActionListner();
-            console.log("win Row - winner is Player" + (player + 1));
+            //console.log("win Row - winner is Player" + (player + 1));
             return 1;
         }
     }
@@ -149,7 +149,7 @@ const checkResult = () => {
         if (flag) {
             RemoveClickActionListner();
             gameWinner("COL", i);
-            console.log("win Column - winner is Player" + (player + 1));
+            //console.log("win Column - winner is Player" + (player + 1));
             return 1;
         }
     }
@@ -165,7 +165,7 @@ const checkResult = () => {
     if (flag) {
         RemoveClickActionListner();
         gameWinner("LTR");
-        console.log("win Diagonal LTR - winner is Player" + (player + 1));
+        //console.log("win Diagonal LTR - winner is Player" + (player + 1));
         return 1;
     }
 
@@ -181,7 +181,7 @@ const checkResult = () => {
     if (flag) {
         RemoveClickActionListner();
         gameWinner("RTL");
-        console.log("win Diagonal RTL - winner is Player" + (player + 1));
+        //console.log("win Diagonal RTL - winner is Player" + (player + 1));
         return 1;
     }
 
@@ -207,7 +207,6 @@ const gameWinner = (type, Row_Col) => {
     var width = document.getElementById("table-container").scrollWidth;
     line.style.width = width - 0 + "px";
     line.style.display = "block";
-    console.log(height, width);
 
     var shift = 0;
     var MidRow = (MaxRows - 1) / 2;
@@ -242,7 +241,6 @@ const gameWinner = (type, Row_Col) => {
             }px)`;
             break;
         case "RTL":
-            console.log(GameLevel);
             // line.style.transform = `rotate(135deg) translate(40%, -${
             //     height / 2 - (GameLevel * 10 + 10)
             // }px) scale(1.25)`;
