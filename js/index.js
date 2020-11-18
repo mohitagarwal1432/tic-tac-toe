@@ -297,15 +297,15 @@ const setGameTable = () => {
 };
 
 const init = () => {
+    player = 0;
+    ClickCount = 0;
     setClickAction();
     setPlayerName();
     setDefaultResult();
-    player = 0;
     document.getElementById("turn").style = "color:black; font-weight: light";
     document.getElementById("game-level-change").value = GameLevel;
     document.getElementById("hr-line").style.display = "none";
     document.getElementById("hr-line").style.width = "0px";
-    ClickCount = 0;
 };
 //setting onlick action
 const setClickAction = () => {
