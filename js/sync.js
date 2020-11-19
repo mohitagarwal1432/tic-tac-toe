@@ -10,6 +10,7 @@ var connection;
 var peer = new Peer(undefined, {
     host: "v12.milindsharma.com",
     port: "3001",
+    secure: true,
 });
 
 peer.on("open", function (id) {
