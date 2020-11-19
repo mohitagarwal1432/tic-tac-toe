@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta
+            name="author"
+            content="Mohit Agarwal - mohitagarwal1432@gmail.com"
+        />
+        <meta name="keywords" content="Tic tac toe, game, github" />
+        <meta name="description" content="" />
+
+        <meta
+            name="title"
+            property="og:title"
+            content="Tic Tac Toe game using JS"
+        />
+        <!-- <meta name="description" property="og:description" content=""> -->
+        <meta
+            name="image"
+            property="og:image"
+            content="https://mohitagarwal1432.github.io/tic-tac-toe/images/favicon.PNG"
+        />
+        <meta
+            name="url"
+            property="og:url"
+            content="https://mohitagarwal1432.github.io/tic-tac-toe/index.html"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+            integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+            crossorigin="anonymous"
+        />
+        <title>Tic Tac Toe</title>
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="144x144"
+            href="./images/favicon.PNG"
+        />
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+    <body>
+        <div class="home">
+            <a href="index.html"><i class="fas fa-home fa-2x"></i></a>
+        </div>
+        <div class="slider">
+            <div class="slide">
+                <form onsubmit="savePlayerName(event, 1)">
+                    <h1>Enter Your Name:</h1>
+                    <input
+                        type="text"
+                        id="player1"
+                        minlength="3"
+                        maxlength="10"
+                        name="player1"
+                        required
+                    />
+                    <br />
+                    <input type="submit" value="Next" />
+                </form>
+            </div>
+            <div class="slide">
+                <form onsubmit="connectTOFriend(event)">
+                    <div class="tooltip">
+                        <h3 onclick="copyPeerId()">
+                            Your Id: <span id="peerid"></span>
+                        </h3>
+                        <span id="tooltip" class="tooltiptext"
+                            >Id coppied to your Clipboard.</span
+                        >
+                    </div>
+                    <p style="margin: 0px">(Tap on id to copy.)</p>
+                    <br />
+                    <h1>Enter Id of your Friend:</h1>
+                    <p>
+                        (Ask four friend to send his id throught whatsapp or any
+                        other medium.)
+                    </p>
+                    <input
+                        type="text"
+                        id="friendsId"
+                        name="friendsId"
+                        required
+                    />
+                    <br />
+                    <input type="submit" value="Next" />
+                </form>
+            </div>
+            <div class="slide">
+                <div class="player-name-container">
+                    <h1>Tic Tac Toe</h1>
+                    <p id="player1-symbol"></p>
+                    <p id="player2-symbol"></p>
+                    <p style="clear: both"></p>
+                    <div class="button-container">
+                        <button id="replayGame" onclick="replayGame()">
+                            Replay
+                        </button>
+                    </div>
+                </div>
+                <p class="player-turn" id="turn"></p>
+                <div class="table-container" id="table-container">
+                    <table>
+                        <hr id="hr-line" />
+                        <tbody id="table"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- <div class="slider-button-container">
+                    <a class="slider-button" href="javascript:changeSlide(-1)"
+                        >Previous
+                    </a>
+                    <a class="slider-button" href="javascript:changeSlide(1)"
+                        >Next
+                    </a>
+                </div> -->
+        </div>
+        <div id="model">
+            <div id="waitingContainer">
+                <h1>Waiting for other Player to accept your request...</h1>
+            </div>
+            <div id="acceptContainer">
+                <h1>Your friend has requestion to play again.</h1>
+                <div class="button-container">
+                    <button onclick="acceptReplay()">Accept</button>
+                    <button onclick="location.reload();">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+        <script src="./js/playWithRemoteFriend.js"></script>
+        <script src="./js/sync.js"></script>
+        <script>
+            const copyPeerId = () => {
+                var peerid = document.getElementById("peerid").innerHTML;
+
+                var textarea = document.createElement("textarea");
+                document.body.appendChild(textarea);
+                textarea.value = peerid;
+                textarea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textarea);
+
+                var tooltip = document.getElementById("tooltip");
+                tooltip.style = "visibility: visible;opacity: 1";
+                setTimeout(() => {
+                    var tooltip = document.getElementById("tooltip");
+                    tooltip.style = "visibility: hidden;opacity: 0";
+                }, 3000);
+            };
+        </script>
+    </body>
+</html>

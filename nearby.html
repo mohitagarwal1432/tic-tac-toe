@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <meta name="author" content="Mohit Agarwal - mohitagarwal1432@gmail.com">
+        <meta name="keywords" content="Tic tac toe, game, github">
+        <meta name="description" content="" />
+        
+        <meta name="title" property="og:title" content="Tic Tac Toe game using JS">
+        <!-- <meta name="description" property="og:description" content=""> -->
+        <meta name="image" property="og:image" content="https://mohitagarwal1432.github.io/tic-tac-toe/images/favicon.PNG">
+        <meta name="url" property="og:url" content="https://mohitagarwal1432.github.io/tic-tac-toe/index.html">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+        <title>Tic Tac Toe</title>
+        <link rel="icon" type="image/png" sizes="144x144" href="./images/favicon.PNG">
+        <link rel="stylesheet" href="./css/style.css" />
+    </head>
+    <body>
+        <div class="home">
+            <a href="index.html"><i class="fas fa-home fa-2x"></i></a>
+        </div>
+        <div class="slider">
+            <div class="slide">
+                <form onsubmit="savePlayerName(event, 1)">
+                    <h1>Enter Player 1 name:</h1>
+                    <input
+                        type="text"
+                        id="player1"
+                        minlength="3"
+                        maxlength="10"
+                        name="player1"
+                        required
+                    />
+                    <br />
+                    <input type="submit" value="Next" />
+                </form>
+            </div>
+            <div class="slide">
+                <form onsubmit="savePlayerName(event, 2)">
+                    <h1>Enter Player 2 name:</h1>
+                    <input
+                        type="text"
+                        id="player2"
+                        minlength="3"
+                        maxlength="10"
+                        name="player2"
+                        required
+                    />
+                    <br />
+                    <input type="submit" value="Next" />
+                </form>
+            </div>
+            <div class="slide">
+                <form onsubmit="salectLevel(event)">
+                    <h1>Select Game Level:</h1>
+                    <select id="game-level" name="game-level">
+                        <option value="1">Easy</option>
+                        <option value="2">Medium</option>
+                        <option value="3">Hard</option>
+                    </select>
+
+                    <br />
+                    <input type="submit" value="Next" />
+                </form>
+            </div>
+            <div class="slide">
+                <div class="player-name-container">
+                    <h1>Tic Tac Toe</h1>
+                    <p id="player1-symbol"></p>
+                    <p id="player2-symbol"></p>
+                    <p style="clear: both"></p>
+                    <div class="button-container">
+                        <button onclick="replayGame()">Replay</button>
+                        <button onclick="restartGame()">Restart</button>
+                        <select style="width: auto;" onchange="changeLevel()" id="game-level-change" name="game-level-change">
+                            <option value="1">Easy</option>
+                            <option value="2">Medium</option>
+                            <option value="3">Hard</option>
+                        </select>
+                        </form>
+                    </div>
+                </div>
+                <p class="player-turn" id="turn"></p>
+                <div class="table-container" id="table-container">
+                    <table>
+                        <hr id="hr-line"> 
+                        <tbody id="table"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="./js/playWithNearbyFriend.js"></script>
+    </body>
+</html>
