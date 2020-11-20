@@ -8,8 +8,10 @@
 
 var connection;
 var peer = new Peer(undefined, {
-    host: "v12.milindsharma.com",
-    port: "3001",
+    // host: "v12.milindsharma.com",
+    // port: "3001",
+    host: "tic-tac-toe-1432.herokuapp.com",
+    port: "",
     secure: true,
 });
 
