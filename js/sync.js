@@ -76,7 +76,6 @@ const connectionEvents = () => {
             ele["srcElement"] = document.getElementById(data.id);
             allowedToPlay(ele);
         }
-        console.log("Received: ", data);
     });
     connection.on("close", function () {
         console.log("Your friend disconnected!");
