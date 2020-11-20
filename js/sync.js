@@ -16,7 +16,7 @@ var peer = new Peer(undefined, {
 });
 
 peer.on("open", function (id) {
-    console.log("My peer ID is: " + id);
+    console.log("My ID is: " + id);
     document.getElementById("peerid").innerHTML = id;
 });
 
@@ -47,7 +47,7 @@ peer.on("error", function (err) {
 
 peer.on("disconnected", () => {
     console.log(
-        "You are no longer accepting connections and no one can connect to you with your peer id, as it is disabled."
+        "You are no longer accepting connections and no one can connect to you with your id, as it is disabled."
     );
 });
 
