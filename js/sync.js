@@ -56,11 +56,9 @@ const connectionEvents = () => {
         if (data.replay) {
             document.getElementById("model").style.display = "block";
             document.getElementById("acceptContainer").style.display = "flex";
-        }
-        if (data.isReplayAccepted) {
+        } else if (data.isReplayAccepted) {
             setGameTable();
-        }
-        if (!isGameTableSet) {
+        } else if (!isGameTableSet) {
             if (data.host) {
                 var name = PlayerNames[0];
                 PlayerNames[0] = data.name;
@@ -73,8 +71,7 @@ const connectionEvents = () => {
             setGameTable();
             changeSlide(1);
             isGameTableSet = 1;
-        }
-        if (isGameTableSet) {
+        } else if (isGameTableSet) {
             var ele = [];
             ele["srcElement"] = document.getElementById(data.id);
             allowedToPlay(ele);
