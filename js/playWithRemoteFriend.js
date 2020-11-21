@@ -111,6 +111,7 @@ const allowedToPlay = (ele) => {
             (playerNumber == player ? "Your " : PlayerNames[player] + "'s ") +
             "turn";
     } else {
+        document.getElementById("replayGame").style.display = "block";
         if (player == playerNumber) {
             connection.send({
                 id: id,
@@ -197,7 +198,6 @@ const checkResult = () => {
         turn.innerHTML = "DRAW";
         turn.style = "color:RED;font-weight:bolder";
         return 1;
-        document.getElementById("replayGame").style.display = "block";
     }
 
     return 0;
@@ -265,7 +265,6 @@ const gameWinner = (type, Row_Col) => {
     turn.innerHTML =
         (playerNumber == player ? "You" : PlayerNames[player]) + " won";
     turn.style = "color:green;font-weight:bolder";
-    document.getElementById("replayGame").style.display = "block";
 };
 //Removing Click action after Win
 const RemoveClickActionListner = () => {
