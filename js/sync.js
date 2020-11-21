@@ -7,7 +7,9 @@
 */
 
 var connection;
-var peer = new Peer(undefined, {
+var peerid = getCookie("uniqueID");
+console.log(peerid);
+var peer = new Peer(peerid, {
     // host: "v12.milindsharma.com",
     // port: "3001",
     host: "tic-tac-toe-1432.herokuapp.com",
@@ -18,6 +20,7 @@ var peer = new Peer(undefined, {
 peer.on("open", function (id) {
     console.log("My ID is: " + id);
     document.getElementById("peerid").innerHTML = id;
+    setCookie("uniqueID", id, 1);
 });
 
 peer.on("connection", function (conn) {
@@ -37,7 +40,9 @@ peer.on("connection", function (conn) {
 });
 
 peer.on("error", function (err) {
-    alert("Invalid id. try again");
+    alert(
+        "You have entered a invalid id or your friend is already connected with someone else."
+    );
     document.getElementById("friendsId").value = "";
     console.log(
         "Cannot connect to the friend you are trying to or invalid friend id.",
@@ -69,7 +74,8 @@ const connectionEvents = () => {
                 playerNumber = data.playerNumber;
             }
             setGameTable();
-            changeSlide(1);
+            SlideCounter = GameArenaSlideNumber;
+            slider();
             isGameTableSet = 1;
         } else if (isGameTableSet) {
             var ele = [];

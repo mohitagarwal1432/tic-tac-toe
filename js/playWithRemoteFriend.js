@@ -11,10 +11,12 @@ var GameSymbols = ["X", "0"]; //X for player_1 and 0 for player_2
 var result = []; // to store 0 and X matrix
 var TableData; //it will store all td elements
 var PlayerNames = [];
+PlayerNames[0] = getCookie("PlayerName");
 var GameLevel = 1;
 var ClickCount = 0;
 var isGameTableSet = 0;
 var playerNumber;
+var GameArenaSlideNumber = 2;
 
 /*
 ##############################################
@@ -60,6 +62,7 @@ const savePlayerName = (event, playerID) => {
 
     if (name.length >= 3 && name.length <= 10) {
         PlayerNames[playerID - 1] = name;
+        setCookie("PlayerName", name, 1);
         //console.log("ok", PlayerNames);
         changeSlide(1);
     } else {
