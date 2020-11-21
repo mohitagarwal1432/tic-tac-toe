@@ -78,9 +78,11 @@ const connectionEvents = () => {
             slider();
             isGameTableSet = 1;
         } else if (isGameTableSet) {
-            var ele = [];
-            ele["srcElement"] = document.getElementById(data.id);
-            allowedToPlay(ele);
+            if (playerNumber != player) {
+                var ele = [];
+                ele["srcElement"] = document.getElementById(data.id);
+                allowedToPlay(ele);
+            }
         }
     });
     connection.on("close", function () {

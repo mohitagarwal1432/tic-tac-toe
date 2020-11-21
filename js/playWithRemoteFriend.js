@@ -12,6 +12,7 @@ var result = []; // to store 0 and X matrix
 var TableData; //it will store all td elements
 var PlayerNames = [];
 PlayerNames[0] = getCookie("PlayerName");
+
 var GameLevel = 1;
 var ClickCount = 0;
 var isGameTableSet = 0;
@@ -26,6 +27,13 @@ var GameArenaSlideNumber = 2;
 ##############################################
 */
 var SlideCounter = 0;
+if (PlayerNames[0]) {
+    SlideCounter = 1;
+    document.getElementById("UserName").innerHTML = PlayerNames[0];
+    //console.log("Yes, name is saved!", PlayerNames, PlayerNames[0]);
+} else {
+    //console.log("No, name is not saved!", playerNumber, PlayerNames[0]);
+}
 const slider = () => {
     var slides = document.getElementsByClassName("slide");
     for (i = 0; i < slides.length; i++) {
@@ -46,6 +54,11 @@ const changeSlide = (num) => {
 };
 slider();
 
+const updateName = () => {
+    SlideCounter = 0;
+    slider();
+};
+
 /*
 ##############################################
 
@@ -63,6 +76,7 @@ const savePlayerName = (event, playerID) => {
     if (name.length >= 3 && name.length <= 10) {
         PlayerNames[playerID - 1] = name;
         setCookie("PlayerName", name, 1);
+        document.getElementById("UserName").innerHTML = PlayerNames[0];
         //console.log("ok", PlayerNames);
         changeSlide(1);
     } else {
