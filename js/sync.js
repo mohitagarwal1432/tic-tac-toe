@@ -30,7 +30,7 @@ peer.on("connection", function (conn) {
         console.log("Your Friend accepted your invitation!");
         // Receive messages
         connectionEvents();
-        //peer.disconnect();
+        peer.disconnect();
         connection.send({
             host: false,
             name: PlayerNames[0],
@@ -111,8 +111,8 @@ const connectTOFriend = (event) => {
                 console.log("Connection Established!");
                 // Receive messages
                 connectionEvents();
-                //peer.disconnect();
-                connectVideoCall(friendsId);
+                peer.disconnect();
+
                 connection.send({
                     host: true,
                     name: PlayerNames[0],
@@ -125,120 +125,3 @@ const connectTOFriend = (event) => {
         document.getElementById("friendsId").value = "";
     }
 };
-
-// var getUserMedia =
-//     navigator.getUserMedia ||
-//     navigator.webkitGetUserMedia ||
-//     navigator.mozGetUserMedia;
-// getUserMedia(
-//     {
-//         video: true,
-//         audio: true,
-//     },
-//     function (stream) {
-//         var call = peer.call("another-peers-id", stream);
-//         call.on("stream", function (remoteStream) {
-//             // Show stream in some video/canvas element.
-//         });
-//     },
-//     function (err) {
-//         console.log("Failed to get local stream", err);
-//     }
-// );
-
-const myVideoContainer = document.getElementById("myVideo");
-const remoteUserVideoContainer = document.getElementById("remoteUserVideo");
-const myVideo = document.createElement("video");
-myVideo.muted = true;
-var MyStream;
-var RemoteUserStream;
-
-navigator.mediaDevices
-    .getUserMedia({
-        video: true,
-        audio: true,
-    })
-    .then((stream) => {
-        MyStream = stream;
-        console.log("Video Enabled");
-        myVideo.srcObject = stream;
-        myVideo.addEventListener("loadedmetadata", () => {
-            myVideo.play();
-        });
-        myVideoContainer.appendChild(myVideo);
-
-        peer.on("call", (call) => {
-            console.log(
-                "When other user call me, this event is triggered, i am not host"
-            );
-            call.answer(MyStream); //sending him my stream
-            var video = document.createElement("video");
-            call.on("stream", function (remoteStream) {
-                RemoteUserStream = remoteStream;
-                //to get remote users strem
-                console.log("Stream event triggered.");
-                video.srcObject = remoteStream;
-                video.addEventListener("loadedmetadata", () => {
-                    video.play();
-                });
-                remoteUserVideoContainer.appendChild(video);
-            });
-            call.on("close", () => {
-                video.remove();
-            });
-        });
-    })
-    .catch((err) => {
-        console.log(err);
-    });
-
-const connectVideoCall = (friendsId) => {
-    var call = peer.call(friendsId, MyStream);
-    var video = document.createElement("video");
-    call.on("stream", function (remoteStream) {
-        RemoteUserStream = remoteStream;
-        console.log("Stream event triggered.");
-        video.srcObject = remoteStream;
-        video.addEventListener("loadedmetadata", () => {
-            video.play();
-        });
-        remoteUserVideoContainer.appendChild(video);
-    });
-    call.on("close", () => {
-        video.remove();
-    });
-};
-
-// peer.on("call", function (call) {
-//     navigator.mediaDevices.getUserMedia(
-//         { video: true, audio: true },
-//         function (stream) {
-//             call.answer(stream); // Answer the call with an A/V stream.
-//             call.on("stream", function (remoteStream) {
-//                 // Show stream in some video/canvas element.
-//             });
-//         },
-//         function (err) {
-//             console.log("Failed to get local stream", err);
-//         }
-//     );
-// });
-
-function toggleVideo(ele) {
-    MyStream.getVideoTracks()[0].enabled = !MyStream.getVideoTracks()[0]
-        .enabled;
-    if (MyStream.getVideoTracks()[0].enabled) {
-        ele.style.backgroundColor = "rgba(0,0,0,0.7)";
-    } else {
-        ele.style.backgroundColor = "rgba(255,0,0,0.7)";
-    }
-}
-function toggleAudio(ele) {
-    MyStream.getAudioTracks()[0].enabled = !MyStream.getAudioTracks()[0]
-        .enabled;
-    if (MyStream.getAudioTracks()[0].enabled) {
-        ele.style.backgroundColor = "rgba(0,0,0,0.7)";
-    } else {
-        ele.style.backgroundColor = "rgba(255,0,0,0.7)";
-    }
-}

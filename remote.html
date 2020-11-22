@@ -139,25 +139,6 @@
                 </div>
             </div>
         </div>
-        <div id="videoCallIcon" onclick="displayVideoCallContainer()">
-            <i class="fas fa-video"></i>
-        </div>
-        <div id="videoCallContainer">
-            <div class="videoContainerTitleBar">
-                <p onclick="hideVideoCallContainer()" title="Minimize">-</p>
-            </div>
-            <div id="myVideo" class="myVideo"></div>
-            <div
-                id="remoteUserVideo"
-                class="remoteUserVideo"
-                onclick="toggleVideoContainer()"
-            ></div>
-            <div id="videoControlls">
-                <i onclick="toggleVideo(this)" class="fas fa-video-slash"></i>
-                <i onclick="toggleAudio(this)" class="fas fa-volume-mute"></i>
-            </div>
-        </div>
-
         <script src="./js/cookie.js"></script>
         <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
         <script src="./js/playWithRemoteFriend.js"></script>
@@ -180,43 +161,6 @@
                     tooltip.style = "visibility: hidden;opacity: 0";
                 }, 3000);
             };
-            const displayVideoCallContainer = () => {
-                document.getElementById("videoCallIcon").style.display = "none";
-                document.getElementById("videoCallContainer").style =
-                    "opacity: 1; visibility: visible;";
-            };
-            const hideVideoCallContainer = () => {
-                document.getElementById("videoCallIcon").style.display = "flex";
-                document.getElementById("videoCallContainer").style =
-                    "opacity: 0; visibility: none;";
-            };
-            function toggleVideoContainer() {
-                var myVideo = document.getElementById("myVideo");
-                var remoteUserVideo = document.getElementById(
-                    "remoteUserVideo"
-                );
-
-                myVideo.classList.toggle("myVideo");
-                myVideo.classList.toggle("remoteUserVideo");
-
-                remoteUserVideo.classList.toggle("myVideo");
-                remoteUserVideo.classList.toggle("remoteUserVideo");
-
-                if (myVideo.className == "remoteUserVideo") {
-                    myVideo.addEventListener("click", toggleVideoContainer);
-                    remoteUserVideo.removeEventListener(
-                        "click",
-                        toggleVideoContainer
-                    );
-                }
-                if (remoteUserVideo.className == "remoteUserVideo") {
-                    remoteUserVideo.addEventListener(
-                        "click",
-                        toggleVideoContainer
-                    );
-                    myVideo.removeEventListener("click", toggleVideoContainer);
-                }
-            }
         </script>
     </body>
 </html>
