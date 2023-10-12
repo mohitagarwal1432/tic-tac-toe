@@ -12,7 +12,7 @@ console.log(peerid);
 var peer = new Peer(peerid, {
     // host: "v12.milindsharma.com",
     // port: "3001",
-    host: "tic-tac-toe-1432.herokuapp.com",
+    host: "tic-tac-toe-rvy4.onrender.com",
     port: "",
     secure: true,
 });
